@@ -1,0 +1,14 @@
+authority_ladder:
+  approved_policy: 4
+  team_convention: 3
+  wiki_entry: 2
+  informal_note: 1
+
+decision_types:
+  vendor_approval:
+    required_evidence:
+      - policy_condition
+      - assessment_report
+      - data_residency_proof
+  code_change:
+    required_evidence: []
