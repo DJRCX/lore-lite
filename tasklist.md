@@ -5,16 +5,16 @@ Use this list to track the build in dependency order. Mark a task complete only 
 ## 0. Start and repository setup
 
 - [x] Confirm hacking is underway and do not write project code before the event start time. (The event-day setup began after the listed hacking start.)
-- [x] Check the public event page and prize categories. The brief mentions OrganizerHQ, but the event page currently lists Devpost and the two target prize categories; confirm the actual submission flow in the organizer portal before submitting.
+- [x] Check the public event page and prize categories. The brief mentions OrganizerHQ, but the public event page currently lists Devpost and both target prizes. Its listed deadline is 4:00 PM +06, which differs from the brief’s 3:45 PM OrganizerHQ deadline; confirm the actual submission flow and deadline with organizers before submitting.
 - [x] Verify the current Gemma 4 model ID, Gemini SDK package name, and Agent Skill Open Standard frontmatter/layout in their official docs. Initial choice: `gemma-4-26b-a4b-it` with the `google-genai` SDK; skill frontmatter requires `name` and `description`.
-- [ ] Create the project repository and initial Python package layout from `lore-lite-build-plan.md`.
+- [x] Create the project repository and initial Python package layout from `lore-lite-build-plan.md`. Public repository: https://github.com/DJRCX/lore-lite
 - [x] Add the chosen open-source license (MIT or Apache 2.0) and a short README stub. (MIT)
 - [x] Add a `.gitignore` for Python environments, secrets, local databases, and cache files.
 - [x] Create and activate a Python 3.11+ environment; add the minimal dependencies and development commands. (`uv sync --extra dev`; Python 3.12.14)
 - [x] Add `lore.config.yaml` with the four authority ranks and the `vendor_approval` and `code_change` decision types.
-- [ ] Commit the initial scaffold.
+- [x] Commit the initial scaffold. (`9b5c926`)
 
-**Milestone: repo ready** — repository exists, package imports, license is present, and secrets/local state are excluded from version control.
+**Milestone: repo ready** — repository exists, package imports, license is present, and secrets/local state are excluded from version control. Initial commit: `9b5c926`.
 
 ## 1. Shared schemas and configuration
 
