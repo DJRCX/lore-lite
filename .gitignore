@@ -16,6 +16,10 @@ build/
 *.db
 *.sqlite
 *.sqlite3
+demo/lore
+demo/lore-expanded
+demo/lore-expanded-retry
+demo/lore-expanded-retry-db
 .cache/
 cache/
 

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1320" viewBox="0 0 1920 1320" role="img" aria-labelledby="title desc">
+  <title id="title">Secure database request path</title>
+  <desc id="desc">A detailed, four-stage database flow. The application receives a report request, the API validates it, a database gateway prepares a parameterized query and binds the user value separately, and the database returns only the requested rows. A red panel shows prohibited SQL string concatenation. The exact rule is that user input is always passed as a bound parameter, never concatenated into SQL.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#c5d1df"/>
+    </marker>
+    <marker id="greenArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="14" markerHeight="14" orient="auto">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#74e3ae"/>
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; }
+      .title { fill:#ffffff; font-size:48px; font-weight:700; }
+      .subtitle { fill:#d0d9e4; font-size:25px; }
+      .stage { fill:#ffffff; font-size:31px; font-weight:700; }
+      .body { fill:#edf2f7; font-size:24px; }
+      .muted { fill:#c5d1df; font-size:21px; }
+      .mono { fill:#baf4d5; font-family:monospace; font-size:22px; }
+      .smallcaps { fill:#8de9ba; font-size:20px; font-weight:700; letter-spacing:3px; }
+    </style>
+  </defs>
+  <rect width="1920" height="1320" fill="#101820"/>
+  <text x="88" y="100" class="title">A safe path from request to database</text>
+  <text x="90" y="146" class="subtitle">Reporting query flow · Keep user supplied values separate from SQL instructions</text>
+  <text x="90" y="205" class="smallcaps">THE REQUEST FLOW</text>
+
+  <!-- Four stages -->
+  <rect x="80" y="255" width="350" height="410" rx="22" fill="#202b36" stroke="#bac8d8" stroke-width="3"/>
+  <circle cx="125" cy="307" r="25" fill="#ffffff"/>
+  <text x="125" y="316" text-anchor="middle" fill="#101820" font-size="25" font-weight="700">1</text>
+  <text x="168" y="318" class="stage">Application</text>
+  <text x="118" y="384" class="body">A teammate requests a report.</text>
+  <text x="118" y="435" class="muted">Example filter value</text>
+  <rect x="118" y="457" width="270" height="66" rx="12" fill="#111a22" stroke="#8094aa" stroke-width="2"/>
+  <text x="145" y="500" class="mono">customer_id = 4281</text>
+  <text x="118" y="572" class="muted">Treat this value as data,</text>
+  <text x="118" y="604" class="muted">not as part of the query.</text>
+
+  <rect x="545" y="255" width="350" height="410" rx="22" fill="#202b36" stroke="#bac8d8" stroke-width="3"/>
+  <circle cx="590" cy="307" r="25" fill="#ffffff"/>
+  <text x="590" y="316" text-anchor="middle" fill="#101820" font-size="25" font-weight="700">2</text>
+  <text x="633" y="318" class="stage">Service API</text>
+  <text x="583" y="384" class="body">Check the request first.</text>
+  <rect x="583" y="425" width="274" height="66" rx="12" fill="#303d49"/>
+  <text x="720" y="466" text-anchor="middle" class="body">Validate input type</text>
+  <rect x="583" y="510" width="274" height="66" rx="12" fill="#303d49"/>
+  <text x="720" y="551" text-anchor="middle" class="body">Authorize report access</text>
+  <text x="583" y="620" class="muted">Reject invalid requests early.</text>
+
+  <rect x="1010" y="220" width="430" height="480" rx="24" fill="#123a31" stroke="#74e3ae" stroke-width="4"/>
+  <circle cx="1060" cy="275" r="25" fill="#74e3ae"/>
+  <text x="1060" y="284" text-anchor="middle" fill="#10241c" font-size="25" font-weight="700">3</text>
+  <text x="1104" y="286" class="stage">Database gateway</text>
+  <text x="1055" y="350" class="body">Prepare a fixed query</text>
+  <rect x="1055" y="372" width="340" height="86" rx="12" fill="#1d5144"/>
+  <text x="1080" y="410" class="mono">SELECT * FROM reports</text>
+  <text x="1080" y="441" class="mono">WHERE customer_id = ?</text>
+  <text x="1055" y="510" class="body">Bind the value separately</text>
+  <rect x="1055" y="532" width="340" height="66" rx="12" fill="#1d5144" stroke="#74e3ae" stroke-width="2"/>
+  <text x="1080" y="574" class="mono">parameter 1 → 4281</text>
+  <text x="1055" y="646" class="muted">Query structure stays unchanged.</text>
+
+  <rect x="1555" y="255" width="285" height="410" rx="22" fill="#202b36" stroke="#bac8d8" stroke-width="3"/>
+  <circle cx="1600" cy="307" r="25" fill="#ffffff"/>
+  <text x="1600" y="316" text-anchor="middle" fill="#101820" font-size="25" font-weight="700">4</text>
+  <text x="1643" y="318" class="stage">Database</text>
+  <ellipse cx="1697" cy="410" rx="92" ry="30" fill="#34485a" stroke="#cad5e1" stroke-width="3"/>
+  <path d="M1605 410v105c0 17 41 30 92 30s92-13 92-30V410" fill="#293b4b" stroke="#cad5e1" stroke-width="3"/>
+  <ellipse cx="1697" cy="515" rx="92" ry="30" fill="#293b4b" stroke="#cad5e1" stroke-width="3"/>
+  <text x="1697" y="470" text-anchor="middle" class="body">Reports</text>
+  <text x="1590" y="596" class="muted">Returns permitted rows.</text>
+
+  <!-- Flow arrows -->
+  <path d="M440 455 H525" fill="none" stroke="#c5d1df" stroke-width="6" marker-end="url(#arrow)"/>
+  <text x="483" y="426" text-anchor="middle" class="muted">request</text>
+  <path d="M905 455 H990" fill="none" stroke="#c5d1df" stroke-width="6" marker-end="url(#arrow)"/>
+  <text x="948" y="426" text-anchor="middle" class="muted">validated</text>
+  <path d="M1450 455 H1535" fill="none" stroke="#74e3ae" stroke-width="6" marker-end="url(#greenArrow)"/>
+  <text x="1493" y="426" text-anchor="middle" fill="#8de9ba" font-size="20">bound query</text>
+
+  <!-- Safe and unsafe comparison -->
+  <rect x="80" y="760" width="850" height="260" rx="20" fill="#153b2b" stroke="#74e3ae" stroke-width="3"/>
+  <text x="120" y="820" fill="#aaf0c9" font-size="25" font-weight="700">SAFE · parameterized statement</text>
+  <text x="120" y="885" fill="#ffffff" font-family="monospace" font-size="25">SELECT * FROM reports</text>
+  <text x="120" y="927" fill="#ffffff" font-family="monospace" font-size="25">WHERE customer_id = ?</text>
+  <text x="120" y="978" fill="#d4f7e3" font-size="22">SQL and request values travel separately.</text>
+
+  <rect x="990" y="760" width="850" height="260" rx="20" fill="#421e22" stroke="#ff7b7b" stroke-width="3"/>
+  <text x="1030" y="820" fill="#ffb7b7" font-size="25" font-weight="700">UNSAFE · string concatenation</text>
+  <text x="1030" y="885" fill="#ffffff" font-family="monospace" font-size="23">"... WHERE customer_id = '"</text>
+  <text x="1030" y="927" fill="#ffffff" font-family="monospace" font-size="23">+ user_input + "'"</text>
+  <text x="1030" y="978" fill="#ffdada" font-size="22">A crafted value could change the query.</text>
+
+  <rect x="80" y="1070" width="1760" height="170" rx="20" fill="#f4f6f7"/>
+  <text x="125" y="1125" fill="#111820" font-size="22" font-weight="700" letter-spacing="2">APPROVED PROJECT RULE</text>
+  <text x="125" y="1182" fill="#111820" font-size="29" font-weight="700">User input is always passed as a bound parameter, never concatenated into SQL.</text>
+  <text x="125" y="1220" fill="#394653" font-size="21">Source: approved security policy · Applies to reporting queries</text>
+</svg>
